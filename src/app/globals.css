@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #1e40af;
+  --primary-light: #3b82f6;
+  --secondary: #059669;
+  --secondary-light: #10b981;
+  --gold: #d97706;
+  --gold-light: #f59e0b;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+@layer utilities {
+  .btn-primary {
+    @apply bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors;
+  }
+  .btn-secondary {
+    @apply bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors;
+  }
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-100 p-6;
+  }
+}

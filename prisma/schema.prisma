@@ -1,0 +1,110 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  ADMIN
+}
+
+enum Level {
+  JHS
+  SHS
+}
+
+enum ExamType {
+  BECE
+  WASSCE
+}
+
+enum SubjectCategory {
+  CORE
+  ELECTIVE
+}
+
+enum QuizMode {
+  PRACTICE
+  MOCK
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+model User {
+  id              String        @id @default(cuid())
+  name            String
+  email           String        @unique
+  passwordHash    String
+  role            Role          @default(STUDENT)
+  level           Level
+  classOrForm     String?
+  electiveSubjects String[]
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  quizAttempts    QuizAttempt[]
+}
+
+model Subject {
+  id        String          @id @default(cuid())
+  name      String
+  level     Level
+  category  SubjectCategory @default(CORE)
+  examType  ExamType
+  createdAt DateTime        @default(now())
+  questions Question[]
+  quizAttempts QuizAttempt[]
+
+  @@unique([name, level])
+}
+
+model Question {
+  id            String     @id @default(cuid())
+  level         Level
+  examType      ExamType
+  subjectId     String
+  subject       Subject    @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  topic         String
+  year          Int
+  questionText  String
+  optionA       String
+  optionB       String
+  optionC       String
+  optionD       String
+  correctOption String
+  explanation   String
+  difficulty    Difficulty @default(MEDIUM)
+  createdAt     DateTime   @default(now())
+  quizAnswers   QuizAnswer[]
+}
+
+model QuizAttempt {
+  id             String      @id @default(cuid())
+  userId         String
+  user           User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subjectId      String
+  subject        Subject     @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  mode           QuizMode
+  score          Int
+  totalQuestions  Int
+  timeSpent      Int         @default(0)
+  createdAt      DateTime    @default(now())
+  answers        QuizAnswer[]
+}
+
+model QuizAnswer {
+  id             String      @id @default(cuid())
+  attemptId      String
+  attempt        QuizAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  questionId     String
+  question       Question    @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  selectedOption String
+  isCorrect      Boolean
+}
