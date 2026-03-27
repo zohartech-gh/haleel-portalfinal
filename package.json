@@ -17,7 +17,9 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@ai-sdk/anthropic": "^3.0.64",
     "@prisma/client": "^5.22.0",
+    "ai": "^6.0.140",
     "bcryptjs": "^3.0.3",
     "jsonwebtoken": "^9.0.3",
     "next": "^16.2.1",

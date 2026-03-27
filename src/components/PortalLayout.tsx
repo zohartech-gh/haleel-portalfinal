@@ -14,6 +14,7 @@ const navItems = [
   { label: "Dashboard", path: "dashboard", icon: "\u2302" },
   { label: "Subjects", path: "subjects", icon: "\u{1F4DA}" },
   { label: "Practice", path: "practice", icon: "\u270F" },
+  { label: "AI Practice", path: "ai-practice", icon: "\u{1F916}" },
   { label: "Mock Exam", path: "mock", icon: "\u23F0" },
   { label: "Progress", path: "progress", icon: "\u{1F4CA}" },
 ];

@@ -47,10 +47,15 @@ export default function Dashboard({ level }: DashboardProps) {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
           <Link href={`/${level}/practice`} className={`card text-center hover:shadow-md transition-shadow ${isJHS ? "hover:border-blue-200" : "hover:border-emerald-200"}`}>
             <div className="text-2xl mb-1">&#9997;</div>
             <div className="font-semibold text-sm">Practice</div>
+          </Link>
+          <Link href={`/${level}/ai-practice`} className={`card text-center hover:shadow-md transition-shadow relative ${isJHS ? "hover:border-blue-200" : "hover:border-emerald-200"}`}>
+            <span className={`absolute -top-2 -right-2 text-[10px] font-bold px-1.5 py-0.5 rounded-full text-white ${isJHS ? "bg-blue-600" : "bg-emerald-600"}`}>AI</span>
+            <div className="text-2xl mb-1">&#129302;</div>
+            <div className="font-semibold text-sm">AI Practice</div>
           </Link>
           <Link href={`/${level}/mock`} className={`card text-center hover:shadow-md transition-shadow ${isJHS ? "hover:border-blue-200" : "hover:border-emerald-200"}`}>
             <div className="text-2xl mb-1">&#9202;</div>

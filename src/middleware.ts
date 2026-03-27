@@ -11,7 +11,10 @@ export function middleware(request: NextRequest) {
     pathname === "/login" ||
     pathname === "/signup" ||
     pathname === "/about" ||
-    pathname.startsWith("/api/auth")
+    pathname.startsWith("/api/auth") ||
+    pathname.startsWith("/api/ai-practice") ||
+    pathname.startsWith("/api/ai-explain") ||
+    pathname.startsWith("/api/syllabus")
   ) {
     return NextResponse.next();
   }
