@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { verifyPassword, signToken } from "@/lib/auth";
-import { cookies } from "next/headers";
 
 export async function POST(req: NextRequest) {
   try {
@@ -28,8 +27,13 @@ export async function POST(req: NextRequest) {
       level: user.level,
     });
 
-    const cookieStore = await cookies();
-    cookieStore.set("token", token, {
+    const response = NextResponse.json({
+      success: true,
+      level: user.level,
+      role: user.role,
+    });
+
+    response.cookies.set("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
@@ -37,11 +41,7 @@ export async function POST(req: NextRequest) {
       path: "/",
     });
 
-    return NextResponse.json({
-      success: true,
-      level: user.level,
-      role: user.role,
-    });
+    return response;
   } catch (error) {
     console.error("Login error:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
