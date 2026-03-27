@@ -37,7 +37,7 @@ function SignupForm() {
         setError(data.error || "Signup failed");
         return;
       }
-      router.push(`/${form.level.toLowerCase()}/dashboard`);
+      window.location.href = `/${form.level.toLowerCase()}/dashboard`;
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {

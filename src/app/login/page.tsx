@@ -26,9 +26,9 @@ export default function LoginPage() {
         return;
       }
       if (data.role === "ADMIN") {
-        router.push("/admin/questions");
+        window.location.href = "/admin/questions";
       } else {
-        router.push(`/${data.level.toLowerCase()}/dashboard`);
+        window.location.href = `/${data.level.toLowerCase()}/dashboard`;
       }
     } catch {
       setError("Something went wrong. Please try again.");
