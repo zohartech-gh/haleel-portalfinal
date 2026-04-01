@@ -41,7 +41,7 @@ export default function MockPage({ level }: MockPageProps) {
   const [loading, setLoading] = useState(false);
   const [score, setScore] = useState(0);
 
-  const MOCK_TIME = 30 * 60;
+  const MOCK_TIME = 60 * 60; // 60 minutes for 40 questions (WAEC standard pace)
 
   const accentGradient = isJHS ? "from-blue-600 to-indigo-800" : "from-emerald-600 to-teal-800";
   const accentBg = isJHS ? "bg-blue-600 hover:bg-blue-700" : "bg-emerald-600 hover:bg-emerald-700";
