@@ -31,6 +31,7 @@ function PracticeContent({ level }: PracticePageProps) {
   const { user, loading: userLoading } = useUser();
   const searchParams = useSearchParams();
   const subjectParam = searchParams.get("subject") || "";
+  const isJHS = level === "jhs";
 
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [selectedSubject, setSelectedSubject] = useState(subjectParam);
@@ -42,6 +43,13 @@ function PracticeContent({ level }: PracticePageProps) {
   const [answered, setAnswered] = useState(0);
   const [started, setStarted] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const accentGradient = isJHS ? "from-blue-600 to-blue-800" : "from-emerald-600 to-emerald-800";
+  const accentBg = isJHS ? "bg-blue-600 hover:bg-blue-700" : "bg-emerald-600 hover:bg-emerald-700";
+  const accentBgLight = isJHS ? "bg-blue-50" : "bg-emerald-50";
+  const accentText = isJHS ? "text-blue-600" : "text-emerald-600";
+  const accentBorder = isJHS ? "border-blue-500" : "border-emerald-500";
+  const accentRing = isJHS ? "focus:ring-blue-500" : "focus:ring-emerald-500";
 
   useEffect(() => {
     fetch(`/api/subjects?level=${level.toUpperCase()}`)
@@ -105,22 +113,37 @@ function PracticeContent({ level }: PracticePageProps) {
     setStarted(false);
   }
 
-  if (userLoading) return <div className="min-h-screen flex items-center justify-center"><div className="text-gray-400">Loading...</div></div>;
+  if (userLoading) return <div className="min-h-screen flex items-center justify-center"><div className="flex items-center gap-3"><div className="w-8 h-8 border-4 border-gray-200 border-t-blue-600 rounded-full animate-spin" /><span className="text-gray-500">Loading...</span></div></div>;
   if (!user) return null;
 
   const q = questions[currentIdx];
   const isFinished = started && currentIdx >= questions.length;
+  const pct = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
 
   return (
     <PortalLayout level={level} userName={user.name}>
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6">Practice Mode</h1>
+      <div className="max-w-3xl mx-auto space-y-6">
+        {/* Header */}
+        <div>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900">Practice Mode</h1>
+          <p className="text-gray-500 mt-1">Answer questions and get instant feedback</p>
+        </div>
 
         {!started ? (
-          <div className="card">
-            <h2 className="font-semibold mb-4">Select a subject to practice</h2>
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${accentGradient} flex items-center justify-center shadow-lg`}>
+                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Z" />
+                </svg>
+              </div>
+              <div>
+                <h2 className="font-bold text-lg text-gray-800">Select a Subject</h2>
+                <p className="text-sm text-gray-400">Choose a subject to practice past questions</p>
+              </div>
+            </div>
             <select
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4"
+              className={`w-full border-2 border-gray-200 rounded-xl px-4 py-3 mb-5 text-gray-700 font-medium focus:outline-none focus:ring-2 ${accentRing} focus:border-transparent transition-all`}
               value={selectedSubject}
               onChange={(e) => setSelectedSubject(e.target.value)}
             >
@@ -129,97 +152,130 @@ function PracticeContent({ level }: PracticePageProps) {
                 <option key={s.id} value={s.name}>{s.name}</option>
               ))}
             </select>
-            <button onClick={startPractice} disabled={!selectedSubject || loading} className="btn-primary disabled:opacity-50">
-              {loading ? "Loading questions..." : "Start Practice"}
+            <button
+              onClick={startPractice}
+              disabled={!selectedSubject || loading}
+              className={`w-full py-3.5 rounded-xl font-bold text-white transition-all disabled:opacity-40 shadow-lg ${accentBg}`}
+            >
+              {loading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  Loading questions...
+                </span>
+              ) : "Start Practice"}
             </button>
           </div>
         ) : isFinished ? (
-          <div className="card text-center">
-            <h2 className="text-xl font-bold mb-2">Practice Complete!</h2>
-            <p className="text-gray-500 mb-4">{selectedSubject}</p>
-            <div className="text-4xl font-bold mb-2 text-blue-700">
-              {score}/{questions.length}
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+            {/* Score banner */}
+            <div className={`bg-gradient-to-r ${accentGradient} p-8 text-center text-white`}>
+              <div className="text-6xl font-extrabold mb-2">{pct}%</div>
+              <div className="text-white/70 text-lg">{score} out of {questions.length} correct</div>
+              <div className="mt-3 text-sm font-medium text-white/50">{selectedSubject}</div>
             </div>
-            <p className="text-gray-500 mb-6">
-              {Math.round((score / questions.length) * 100)}% correct
-            </p>
-            <div className="flex gap-3 justify-center">
-              <button onClick={() => { setStarted(false); setSelectedSubject(""); }} className="btn-secondary">
+            <div className="p-6 flex gap-3 justify-center">
+              <button onClick={() => { setStarted(false); setSelectedSubject(""); }} className="px-6 py-3 rounded-xl font-semibold border-2 border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">
                 New Practice
               </button>
-              <button onClick={finishPractice} className="btn-primary">
+              <button onClick={finishPractice} className={`px-6 py-3 rounded-xl font-bold text-white shadow-lg ${accentBg}`}>
                 Save & Exit
               </button>
             </div>
           </div>
         ) : q ? (
-          <div>
-            {/* Progress bar */}
-            <div className="flex items-center justify-between text-sm text-gray-500 mb-2">
-              <span>Question {currentIdx + 1} of {questions.length}</span>
-              <span>Score: {score}/{answered}</span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2 mb-6">
-              <div
-                className="bg-blue-600 h-2 rounded-full transition-all"
-                style={{ width: `${((currentIdx + 1) / questions.length) * 100}%` }}
-              />
+          <div className="space-y-4">
+            {/* Progress */}
+            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-4">
+              <div className="flex items-center justify-between text-sm mb-2">
+                <span className="font-medium text-gray-600">Question {currentIdx + 1} of {questions.length}</span>
+                <span className={`font-bold ${accentText}`}>Score: {score}/{answered}</span>
+              </div>
+              <div className="w-full bg-gray-100 rounded-full h-2.5">
+                <div
+                  className={`h-2.5 rounded-full transition-all duration-500 ${isJHS ? "bg-gradient-to-r from-blue-400 to-blue-600" : "bg-gradient-to-r from-emerald-400 to-emerald-600"}`}
+                  style={{ width: `${((currentIdx + 1) / questions.length) * 100}%` }}
+                />
+              </div>
             </div>
 
-            <div className="card">
-              <div className="text-xs text-gray-400 mb-2">{q.topic} &middot; {q.year}</div>
-              <p className="text-lg font-medium mb-6">{q.questionText}</p>
+            {/* Question Card */}
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8">
+              <div className="flex items-center gap-2 mb-4">
+                <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${accentBgLight} ${accentText}`}>{q.topic}</span>
+                <span className="text-xs text-gray-400 bg-gray-100 px-2.5 py-1 rounded-full">{q.year}</span>
+              </div>
+              <p className="text-lg font-semibold text-gray-800 mb-6 leading-relaxed">{q.questionText}</p>
 
               <div className="space-y-3">
                 {["A", "B", "C", "D"].map((opt) => {
                   const val = q[`option${opt}` as keyof Question] as string;
                   const isCorrect = opt === q.correctOption;
                   const isSelected = selected === opt;
-                  let cls = "border-gray-200 hover:border-gray-300";
+                  let cls = "border-gray-200 hover:border-gray-300 hover:bg-gray-50";
                   if (showResult) {
-                    if (isCorrect) cls = "border-green-500 bg-green-50";
-                    else if (isSelected) cls = "border-red-500 bg-red-50";
+                    if (isCorrect) cls = "border-green-500 bg-green-50 ring-1 ring-green-500/20";
+                    else if (isSelected) cls = "border-red-500 bg-red-50 ring-1 ring-red-500/20";
+                    else cls = "border-gray-100 opacity-60";
                   } else if (isSelected) {
-                    cls = "border-blue-500 bg-blue-50";
+                    cls = `${accentBorder} ${accentBgLight} ring-1 ${isJHS ? "ring-blue-500/20" : "ring-emerald-500/20"}`;
                   }
                   return (
                     <button
                       key={opt}
                       onClick={() => handleAnswer(opt)}
                       disabled={showResult}
-                      className={`w-full text-left p-4 rounded-lg border-2 transition-colors ${cls}`}
+                      className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 ${cls}`}
                     >
-                      <span className="font-semibold mr-2">{opt}.</span>
-                      {val}
+                      <div className="flex items-center gap-3">
+                        <span className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm flex-shrink-0 ${
+                          showResult && isCorrect ? "bg-green-500 text-white" :
+                          showResult && isSelected ? "bg-red-500 text-white" :
+                          isSelected ? `${isJHS ? "bg-blue-600" : "bg-emerald-600"} text-white` :
+                          "bg-gray-100 text-gray-500"
+                        }`}>{opt}</span>
+                        <span className="font-medium text-gray-700">{val}</span>
+                        {showResult && isCorrect && (
+                          <svg className="w-5 h-5 text-green-500 ml-auto flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                          </svg>
+                        )}
+                      </div>
                     </button>
                   );
                 })}
               </div>
 
               {showResult && (
-                <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-                  <p className={`font-semibold ${selected === q.correctOption ? "text-green-600" : "text-red-600"}`}>
-                    {selected === q.correctOption ? "Correct!" : `Incorrect. The answer is ${q.correctOption}.`}
+                <div className={`mt-5 p-4 rounded-xl border ${selected === q.correctOption ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}>
+                  <p className={`font-bold text-sm ${selected === q.correctOption ? "text-green-700" : "text-red-700"}`}>
+                    {selected === q.correctOption ? "Correct! Well done!" : `Incorrect. The answer is ${q.correctOption}.`}
                   </p>
-                  <p className="text-sm text-gray-600 mt-1">{q.explanation}</p>
+                  <p className="text-sm text-gray-600 mt-2 leading-relaxed">{q.explanation}</p>
                 </div>
               )}
 
               {showResult && (
-                <div className="mt-4 flex justify-end">
-                  {currentIdx < questions.length - 1 ? (
-                    <button onClick={nextQuestion} className="btn-primary">Next Question</button>
-                  ) : (
-                    <button onClick={nextQuestion} className="btn-primary">See Results</button>
-                  )}
+                <div className="mt-5 flex justify-end">
+                  <button onClick={nextQuestion} className={`px-6 py-2.5 rounded-xl font-bold text-white shadow-md ${accentBg} flex items-center gap-2`}>
+                    {currentIdx < questions.length - 1 ? "Next Question" : "See Results"}
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                  </button>
                 </div>
               )}
             </div>
           </div>
         ) : (
-          <div className="card text-center">
-            <p className="text-gray-500">No questions available for this subject yet.</p>
-            <button onClick={() => setStarted(false)} className="btn-primary mt-4">Go Back</button>
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 text-center">
+            <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
+              <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+              </svg>
+            </div>
+            <p className="text-gray-500 font-medium">No questions available for this subject yet.</p>
+            <p className="text-sm text-gray-400 mt-1">Check back soon or try another subject.</p>
+            <button onClick={() => setStarted(false)} className={`mt-5 px-6 py-2.5 rounded-xl font-bold text-white ${accentBg}`}>Go Back</button>
           </div>
         )}
       </div>
