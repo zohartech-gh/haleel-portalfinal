@@ -1,7 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyToken } from "@/lib/auth";
+import { jwtVerify } from "jose";
 
-export function middleware(request: NextRequest) {
+const JWT_SECRET = new TextEncoder().encode(
+  process.env.JWT_SECRET || "haleel-secret-change-me"
+);
+
+interface JWTPayload {
+  userId: string;
+  email: string;
+  role: string;
+  level: string;
+}
+
+async function verifyTokenEdge(token: string): Promise<JWTPayload | null> {
+  try {
+    const { payload } = await jwtVerify(token, JWT_SECRET);
+    return payload as unknown as JWTPayload;
+  } catch {
+    return null;
+  }
+}
+
+export async function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
   const { pathname } = request.nextUrl;
 
@@ -24,7 +44,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  const payload = verifyToken(token);
+  const payload = await verifyTokenEdge(token);
   if (!payload) {
     const response = NextResponse.redirect(new URL("/login", request.url));
     response.cookies.delete("token");
@@ -42,7 +62,7 @@ export function middleware(request: NextRequest) {
   // JHS routes - only JHS users
   if (pathname.startsWith("/jhs")) {
     if (payload.level !== "JHS") {
-      return NextResponse.redirect(new URL(`/shs/dashboard`, request.url));
+      return NextResponse.redirect(new URL("/shs/dashboard", request.url));
     }
     return NextResponse.next();
   }
@@ -50,7 +70,7 @@ export function middleware(request: NextRequest) {
   // SHS routes - only SHS users
   if (pathname.startsWith("/shs")) {
     if (payload.level !== "SHS") {
-      return NextResponse.redirect(new URL(`/jhs/dashboard`, request.url));
+      return NextResponse.redirect(new URL("/jhs/dashboard", request.url));
     }
     return NextResponse.next();
   }

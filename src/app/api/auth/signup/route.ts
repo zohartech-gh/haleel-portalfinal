@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
       data: { name, email, passwordHash, level, role: "STUDENT" },
     });
 
-    const token = signToken({
+    const token = await signToken({
       userId: user.id,
       email: user.email,
       role: user.role,
