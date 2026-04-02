@@ -43,6 +43,9 @@ function PracticeContent({ level }: PracticePageProps) {
   const [answered, setAnswered] = useState(0);
   const [started, setStarted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [practiceMode, setPracticeMode] = useState<"random" | "wrong">("random");
+  const [wrongCount, setWrongCount] = useState<number>(0);
+  const [answers, setAnswers] = useState<{ questionId: string; selectedOption: string; isCorrect: boolean }[]>([]);
 
   const accentGradient = isJHS ? "from-blue-600 to-blue-800" : "from-emerald-600 to-emerald-800";
   const accentBg = isJHS ? "bg-blue-600 hover:bg-blue-700" : "bg-emerald-600 hover:bg-emerald-700";
@@ -62,18 +65,36 @@ function PracticeContent({ level }: PracticePageProps) {
     if (subjectParam) setSelectedSubject(subjectParam);
   }, [subjectParam]);
 
-  async function startPractice() {
+  // Fetch wrong answer count when subject changes
+  useEffect(() => {
+    if (selectedSubject) {
+      fetch(`/api/questions/wrong?level=${level.toUpperCase()}&subject=${encodeURIComponent(selectedSubject)}`)
+        .then((r) => r.json())
+        .then((data) => setWrongCount(data.count || 0))
+        .catch(() => setWrongCount(0));
+    } else {
+      setWrongCount(0);
+    }
+  }, [selectedSubject, level, started]);
+
+  async function startPractice(mode: "random" | "wrong" = "random") {
     if (!selectedSubject) return;
     setLoading(true);
+    setPracticeMode(mode);
     try {
-      const res = await fetch(`/api/questions?level=${level.toUpperCase()}&subject=${encodeURIComponent(selectedSubject)}&mode=practice`);
+      const url = mode === "wrong"
+        ? `/api/questions/wrong?level=${level.toUpperCase()}&subject=${encodeURIComponent(selectedSubject)}&fetch=true`
+        : `/api/questions?level=${level.toUpperCase()}&subject=${encodeURIComponent(selectedSubject)}&mode=practice`;
+      const res = await fetch(url);
       const data = await res.json();
-      setQuestions(data);
+      const qs = mode === "wrong" ? data.questions || data : data;
+      setQuestions(qs);
       setCurrentIdx(0);
       setScore(0);
       setAnswered(0);
       setSelected(null);
       setShowResult(false);
+      setAnswers([]);
       setStarted(true);
     } catch {
     } finally {
@@ -86,9 +107,15 @@ function PracticeContent({ level }: PracticePageProps) {
     setSelected(option);
     setShowResult(true);
     setAnswered((a) => a + 1);
-    if (option === questions[currentIdx].correctOption) {
+    const isCorrect = option === questions[currentIdx].correctOption;
+    if (isCorrect) {
       setScore((s) => s + 1);
     }
+    setAnswers((prev) => [...prev, {
+      questionId: questions[currentIdx].id,
+      selectedOption: option,
+      isCorrect,
+    }]);
   }
 
   function nextQuestion() {
@@ -108,6 +135,7 @@ function PracticeContent({ level }: PracticePageProps) {
         totalQuestions: questions.length,
         timeSpent: 0,
         level: level.toUpperCase(),
+        answers,
       }),
     });
     setStarted(false);
@@ -153,17 +181,39 @@ function PracticeContent({ level }: PracticePageProps) {
               ))}
             </select>
             <button
-              onClick={startPractice}
+              onClick={() => startPractice("random")}
               disabled={!selectedSubject || loading}
               className={`w-full py-3.5 rounded-xl font-bold text-white transition-all disabled:opacity-40 shadow-lg ${accentBg}`}
             >
-              {loading ? (
+              {loading && practiceMode === "random" ? (
                 <span className="flex items-center justify-center gap-2">
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                   Loading questions...
                 </span>
               ) : "Start Practice"}
             </button>
+
+            {wrongCount > 0 && (
+              <button
+                onClick={() => startPractice("wrong")}
+                disabled={!selectedSubject || loading}
+                className="w-full py-3.5 rounded-xl font-bold text-white transition-all disabled:opacity-40 shadow-lg bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 mt-3"
+              >
+                {loading && practiceMode === "wrong" ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Loading...
+                  </span>
+                ) : (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182" />
+                    </svg>
+                    Review Wrong Answers ({wrongCount})
+                  </span>
+                )}
+              </button>
+            )}
           </div>
         ) : isFinished ? (
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">

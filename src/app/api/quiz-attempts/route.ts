@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
   }
 
-  const { subject, mode, score, totalQuestions, timeSpent, level } = await req.json();
+  const { subject, mode, score, totalQuestions, timeSpent, level, answers } = await req.json();
 
   const subjectRecord = await prisma.subject.findFirst({
     where: { name: subject, level },
@@ -28,6 +28,19 @@ export async function POST(req: NextRequest) {
       timeSpent: timeSpent || 0,
     },
   });
+
+  // Save individual answers if provided
+  if (answers && Array.isArray(answers) && answers.length > 0) {
+    await prisma.quizAnswer.createMany({
+      data: answers.map((a: { questionId: string; selectedOption: string; isCorrect: boolean }) => ({
+        attemptId: attempt.id,
+        questionId: a.questionId,
+        selectedOption: a.selectedOption,
+        isCorrect: a.isCorrect,
+      })),
+      skipDuplicates: true,
+    });
+  }
 
   return NextResponse.json(attempt);
 }
