@@ -191,8 +191,8 @@ export default function HomePage() {
               {/* Floating smaller image */}
               <div className="absolute bottom-8 left-0 w-[55%] h-[200px] rounded-2xl overflow-hidden shadow-2xl shadow-emerald-900/30 border-4 border-white/20 animate-slide-up-delay-2">
                 <img
-                  src="/exam-success.png"
-                  alt="Ghanaian SHS students in exam hall"
+                  src="/students-celebrating.jpg"
+                  alt="Happy Ghanaian students celebrating exam success"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -274,8 +274,8 @@ export default function HomePage() {
             <div className="hidden lg:block lg:col-span-2 relative">
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
-                  src="/exam-hall.png"
-                  alt="Ghanaian students writing exams"
+                  src="/students-collage.jpg"
+                  alt="Ghanaian student success photo collage"
                   className="w-full h-[400px] object-cover"
                 />
               </div>
@@ -379,9 +379,9 @@ export default function HomePage() {
           <div className="flex items-center gap-6 justify-center flex-wrap md:flex-nowrap">
             {[
               { src: "/exam-hall.png", alt: "Ghanaian students writing BECE exams" },
-              { src: "/exam-success.png", alt: "SHS students in exam hall" },
-              { src: "/exam-hall.png", alt: "Students focused on exams" },
-              { src: "/exam-success.png", alt: "Exam success celebration" },
+              { src: "/students-celebrating.jpg", alt: "Students celebrating exam success" },
+              { src: "/students-collage.jpg", alt: "Student success in Ghana collage" },
+              { src: "/students-ai-learning.jpg", alt: "Students learning with AI" },
             ].map((photo, i) => (
               <div key={i} className="w-56 h-36 rounded-xl overflow-hidden shadow-lg border-2 border-white/20 flex-shrink-0">
                 <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover" />
@@ -611,8 +611,8 @@ export default function HomePage() {
             {/* Background image overlay */}
             <div className="absolute inset-0">
               <img
-                src="/exam-success.png"
-                alt="Ghanaian students exam success"
+                src="/students-ai-learning.jpg"
+                alt="African students learning with AI technology"
                 className="w-full h-full object-cover opacity-15"
               />
             </div>
