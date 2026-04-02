@@ -96,7 +96,7 @@ export default function PortalLayout({ level, userName, children }: PortalLayout
             H
           </div>
           <span className="font-bold text-gray-900">
-            haleel<span className="text-emerald-600">.org</span>
+            Haleel<span className="text-emerald-600">AI</span>
           </span>
           <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full text-white ${accentBg}`}>
             {level.toUpperCase()}
@@ -130,7 +130,7 @@ export default function PortalLayout({ level, userName, children }: PortalLayout
             </div>
             <div>
               <span className="font-bold text-gray-900 block leading-tight">
-                haleel<span className="text-emerald-600">.org</span>
+                Haleel<span className="text-emerald-600">AI</span>
               </span>
               <span className={`text-[10px] font-bold ${accentText}`}>
                 {level.toUpperCase()} Portal - {examLabel}

@@ -41,7 +41,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-white">Admin Login</h1>
-          <p className="text-gray-400 mt-1">haleel.org administration</p>
+          <p className="text-gray-400 mt-1">HaleelAI administration</p>
         </div>
         <form onSubmit={handleSubmit} className="card space-y-4">
           {error && <div className="bg-red-50 text-red-600 text-sm p-3 rounded-lg">{error}</div>}

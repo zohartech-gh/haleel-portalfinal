@@ -7,11 +7,9 @@ export default function HomePage() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200/50">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-600 to-emerald-500 flex items-center justify-center text-white font-bold text-lg shadow-md">
-              H
-            </div>
+            <img src="/logo.svg" alt="HaleelAI" className="h-10" />
             <span className="text-xl font-bold text-gray-900">
-              haleel<span className="text-emerald-600">.org</span>
+              Haleel<span className="text-emerald-600">AI</span>
             </span>
           </Link>
           <div className="flex items-center gap-2">
@@ -31,8 +29,8 @@ export default function HomePage() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+      {/* Hero Section - Split Layout */}
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-16">
         {/* Animated gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-950 via-blue-900 to-emerald-900 animate-gradient" />
 
@@ -66,117 +64,179 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          {/* Badge */}
-          <div className="animate-slide-up inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-blue-100 text-sm font-medium px-4 py-2 rounded-full mb-8">
-            <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-            Trusted by students across Ghana
+        {/* Hero Content - Split Layout */}
+        <div className="relative z-10 max-w-6xl mx-auto px-4 w-full grid md:grid-cols-2 gap-8 items-center">
+          {/* Left side - Text */}
+          <div className="text-left">
+            {/* Badge */}
+            <div className="animate-slide-up inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-blue-100 text-sm font-medium px-4 py-2 rounded-full mb-8">
+              <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+              Trusted by 5,000+ students across Ghana
+            </div>
+
+            <h1 className="animate-slide-up-delay-1 text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight">
+              Ace Your{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                BECE
+              </span>
+              {" & "}
+              <span className="bg-gradient-to-r from-emerald-400 to-green-300 bg-clip-text text-transparent">
+                WASSCE
+              </span>
+              <br />
+              <span className="shimmer-text">With Confidence</span>
+            </h1>
+
+            <p className="animate-slide-up-delay-2 text-lg md:text-xl text-blue-100/80 mb-10 max-w-lg leading-relaxed">
+              Practice with real past questions, take AI-powered mock exams, and
+              track your progress. Everything you need to excel in one place.
+            </p>
+
+            {/* Portal Entry Cards */}
+            <div className="animate-slide-up-delay-3 grid sm:grid-cols-2 gap-4 max-w-lg mb-8">
+              {/* JHS Portal */}
+              <Link
+                href="/signup?level=JHS"
+                className="portal-card portal-card-jhs group relative bg-white rounded-2xl p-5 text-left shadow-xl shadow-blue-900/10"
+              >
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                      <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
+                        JHS Portal
+                      </h3>
+                      <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">
+                        BECE
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center text-blue-600 font-semibold text-sm group-hover:gap-3 gap-2 transition-all">
+                    Start Practicing
+                    <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                  </div>
+                </div>
+              </Link>
+
+              {/* SHS Portal */}
+              <Link
+                href="/signup?level=SHS"
+                className="portal-card portal-card-shs group relative bg-white rounded-2xl p-5 text-left shadow-xl shadow-emerald-900/10"
+              >
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center shadow-lg shadow-emerald-500/30">
+                      <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold text-gray-900 group-hover:text-emerald-700 transition-colors">
+                        SHS Portal
+                      </h3>
+                      <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
+                        WASSCE
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center text-emerald-600 font-semibold text-sm group-hover:gap-3 gap-2 transition-all">
+                    Start Practicing
+                    <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            {/* Social proof avatars */}
+            <div className="animate-slide-up-delay-4 flex items-center gap-3">
+              <div className="flex -space-x-3">
+                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=80" alt="Student" className="w-9 h-9 rounded-full border-2 border-white/30 object-cover" />
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80" alt="Student" className="w-9 h-9 rounded-full border-2 border-white/30 object-cover" />
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80" alt="Student" className="w-9 h-9 rounded-full border-2 border-white/30 object-cover" />
+                <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=80" alt="Student" className="w-9 h-9 rounded-full border-2 border-white/30 object-cover" />
+              </div>
+              <div>
+                <div className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-blue-200/70 text-xs mt-0.5">Loved by 5,000+ Ghanaian students</p>
+              </div>
+            </div>
           </div>
 
-          <h1 className="animate-slide-up-delay-1 text-4xl sm:text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight tracking-tight">
-            Ace Your{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-              BECE
-            </span>
-            {" & "}
-            <span className="bg-gradient-to-r from-emerald-400 to-green-300 bg-clip-text text-transparent">
-              WASSCE
-            </span>
-            <br />
-            <span className="shimmer-text">With Confidence</span>
-          </h1>
-
-          <p className="animate-slide-up-delay-2 text-lg md:text-xl text-blue-100/80 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Practice with real past questions, take AI-powered mock exams, and
-            track your progress. Everything you need to excel in one place.
-          </p>
-
-          {/* Portal Entry Cards */}
-          <div className="animate-slide-up-delay-3 grid sm:grid-cols-2 gap-5 max-w-2xl mx-auto mb-12">
-            {/* JHS Portal */}
-            <Link
-              href="/signup?level=JHS"
-              className="portal-card portal-card-jhs group relative bg-white rounded-2xl p-7 text-left shadow-xl shadow-blue-900/10"
-            >
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-500/30">
-                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          {/* Right side - Image Collage */}
+          <div className="hidden md:block relative">
+            <div className="relative w-full h-[500px]">
+              {/* Main hero image */}
+              <div className="absolute top-4 right-0 w-[85%] h-[320px] rounded-2xl overflow-hidden shadow-2xl shadow-blue-900/40 animate-slide-up-delay-1">
+                <img
+                  src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800"
+                  alt="African students studying together"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              {/* Floating smaller image */}
+              <div className="absolute bottom-8 left-0 w-[55%] h-[200px] rounded-2xl overflow-hidden shadow-2xl shadow-emerald-900/30 border-4 border-white/20 animate-slide-up-delay-2">
+                <img
+                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600"
+                  alt="Students in classroom"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              {/* Stats floating card */}
+              <div className="absolute bottom-0 right-4 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-xl animate-float">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
-                      JHS Portal
-                    </h3>
-                    <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">
-                      BECE
-                    </span>
+                    <p className="text-sm font-bold text-gray-900">10,000+</p>
+                    <p className="text-xs text-gray-500">Past Questions</p>
                   </div>
-                </div>
-                <p className="text-gray-500 text-sm mb-4">
-                  Master all 9 BECE subjects with past questions from 2015-2024.
-                </p>
-                <div className="flex items-center text-blue-600 font-semibold text-sm group-hover:gap-3 gap-2 transition-all">
-                  Start Practicing
-                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                  </svg>
                 </div>
               </div>
-            </Link>
-
-            {/* SHS Portal */}
-            <Link
-              href="/signup?level=SHS"
-              className="portal-card portal-card-shs group relative bg-white rounded-2xl p-7 text-left shadow-xl shadow-emerald-900/10"
-            >
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center shadow-lg shadow-emerald-500/30">
-                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-emerald-700 transition-colors">
-                      SHS Portal
-                    </h3>
-                    <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
-                      WASSCE
-                    </span>
-                  </div>
-                </div>
-                <p className="text-gray-500 text-sm mb-4">
-                  Core + Elective subjects with AI-powered practice and explanations.
-                </p>
-                <div className="flex items-center text-emerald-600 font-semibold text-sm group-hover:gap-3 gap-2 transition-all">
-                  Start Practicing
-                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              {/* AI badge floating */}
+              <div className="absolute top-0 left-4 bg-gradient-to-r from-purple-600 to-violet-600 rounded-xl px-4 py-2 shadow-xl animate-float-delayed">
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z" />
                   </svg>
+                  <span className="text-white text-sm font-semibold">AI-Powered</span>
                 </div>
               </div>
-            </Link>
-          </div>
-
-          {/* Scroll indicator */}
-          <div className="animate-slide-up-delay-4 bounce-down">
-            <svg className="w-6 h-6 text-white/40 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Wave divider */}
+      <div className="relative -mt-1">
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+          <path d="M0 80V20C240 60 480 0 720 20C960 40 1200 80 1440 40V80H0Z" fill="white" />
+        </svg>
+      </div>
+
       {/* Stats Bar */}
-      <section className="relative -mt-16 z-20 max-w-5xl mx-auto px-4 w-full">
+      <section className="relative z-20 max-w-5xl mx-auto px-4 w-full -mt-8">
         <div className="bg-white rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100 grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-100">
           {[
             { value: "10K+", label: "Questions", color: "text-blue-600" },
-            { value: "50+", label: "Topics", color: "text-emerald-600" },
-            { value: "2", label: "Exam Types", color: "text-amber-600" },
+            { value: "5K+", label: "Students", color: "text-emerald-600" },
+            { value: "50+", label: "Topics", color: "text-amber-600" },
             { value: "AI", label: "Powered", color: "text-purple-600" },
           ].map((stat) => (
             <div key={stat.label} className="stat-item text-center py-6 px-4">
@@ -190,7 +250,7 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-24 px-4">
+      <section className="py-24 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <span className="inline-block text-sm font-semibold text-blue-600 bg-blue-50 px-4 py-1.5 rounded-full mb-4">
@@ -207,91 +267,138 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Past Questions Bank",
-                desc: "Thousands of BECE & WASSCE past questions organized by subject, topic, and year. Practice exactly what you need.",
-                icon: (
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
-                  </svg>
-                ),
-                gradient: "from-blue-500 to-blue-700",
-                shadow: "shadow-blue-500/20",
-              },
-              {
-                title: "Timed Mock Exams",
-                desc: "Simulate real exam conditions with timed tests, progress tracking, and detailed performance summaries.",
-                icon: (
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                  </svg>
-                ),
-                gradient: "from-amber-500 to-orange-600",
-                shadow: "shadow-amber-500/20",
-              },
-              {
-                title: "AI-Powered Practice",
-                desc: "Get instant explanations, personalized question generation, and smart recommendations based on your weak areas.",
-                icon: (
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
-                  </svg>
-                ),
-                gradient: "from-purple-500 to-violet-700",
-                shadow: "shadow-purple-500/20",
-              },
-              {
-                title: "Progress Tracking",
-                desc: "Monitor scores, identify weak subjects, and watch your improvement over time with visual dashboards.",
-                icon: (
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
-                  </svg>
-                ),
-                gradient: "from-emerald-500 to-green-700",
-                shadow: "shadow-emerald-500/20",
-              },
-              {
-                title: "WAEC Syllabus Aligned",
-                desc: "Every question follows the official WAEC syllabus. Core and elective subjects covered for both BECE and WASSCE.",
-                icon: (
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.745 3.745 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
-                  </svg>
-                ),
-                gradient: "from-cyan-500 to-teal-700",
-                shadow: "shadow-cyan-500/20",
-              },
-              {
-                title: "Mobile Friendly",
-                desc: "Study anywhere, anytime. The app is fully responsive and works perfectly on all phones and tablets.",
-                icon: (
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
-                  </svg>
-                ),
-                gradient: "from-rose-500 to-pink-700",
-                shadow: "shadow-rose-500/20",
-              },
-            ].map((feature) => (
-              <div
-                key={feature.title}
-                className="feature-card bg-white rounded-2xl p-7 border border-gray-100 shadow-sm"
-              >
-                <div
-                  className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feature.gradient} ${feature.shadow} shadow-lg flex items-center justify-center text-white mb-5`}
-                >
-                  {feature.icon}
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{feature.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{feature.desc}</p>
+          {/* Features with image */}
+          <div className="grid lg:grid-cols-5 gap-8 items-start">
+            {/* Feature image */}
+            <div className="hidden lg:block lg:col-span-2 relative">
+              <div className="rounded-2xl overflow-hidden shadow-xl">
+                <img
+                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600"
+                  alt="Students in classroom"
+                  className="w-full h-[400px] object-cover"
+                />
               </div>
-            ))}
+              <div className="absolute -bottom-4 -right-4 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl px-5 py-3 shadow-lg">
+                <p className="text-white font-bold text-lg">100%</p>
+                <p className="text-white/80 text-xs">WAEC Aligned</p>
+              </div>
+            </div>
+
+            {/* Feature cards */}
+            <div className="lg:col-span-3 grid sm:grid-cols-2 gap-5">
+              {[
+                {
+                  title: "Past Questions Bank",
+                  desc: "Thousands of BECE & WASSCE past questions organized by subject, topic, and year.",
+                  icon: (
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                    </svg>
+                  ),
+                  gradient: "from-blue-500 to-blue-700",
+                  shadow: "shadow-blue-500/20",
+                },
+                {
+                  title: "Timed Mock Exams",
+                  desc: "Simulate real exam conditions with timed tests and detailed performance summaries.",
+                  icon: (
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                  ),
+                  gradient: "from-amber-500 to-orange-600",
+                  shadow: "shadow-amber-500/20",
+                },
+                {
+                  title: "AI-Powered Practice",
+                  desc: "Get instant explanations, personalized questions, and smart recommendations.",
+                  icon: (
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+                    </svg>
+                  ),
+                  gradient: "from-purple-500 to-violet-700",
+                  shadow: "shadow-purple-500/20",
+                },
+                {
+                  title: "Progress Tracking",
+                  desc: "Monitor scores, identify weak subjects, and watch your improvement over time.",
+                  icon: (
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                    </svg>
+                  ),
+                  gradient: "from-emerald-500 to-green-700",
+                  shadow: "shadow-emerald-500/20",
+                },
+                {
+                  title: "WAEC Syllabus Aligned",
+                  desc: "Every question follows the official WAEC syllabus. Core and elective subjects covered.",
+                  icon: (
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.745 3.745 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                    </svg>
+                  ),
+                  gradient: "from-cyan-500 to-teal-700",
+                  shadow: "shadow-cyan-500/20",
+                },
+                {
+                  title: "Mobile Friendly",
+                  desc: "Study anywhere, anytime. Works perfectly on all phones and tablets.",
+                  icon: (
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                    </svg>
+                  ),
+                  gradient: "from-rose-500 to-pink-700",
+                  shadow: "shadow-rose-500/20",
+                },
+              ].map((feature) => (
+                <div
+                  key={feature.title}
+                  className="feature-card bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div
+                    className={`w-11 h-11 rounded-xl bg-gradient-to-br ${feature.gradient} ${feature.shadow} shadow-lg flex items-center justify-center text-white mb-4`}
+                  >
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-base font-bold text-gray-900 mb-1.5">{feature.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{feature.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Student Photo Strip */}
+      <section className="py-12 bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex items-center gap-6 justify-center flex-wrap md:flex-nowrap">
+            {[
+              { src: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=300", alt: "Students studying" },
+              { src: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=300", alt: "Classroom learning" },
+              { src: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=300", alt: "Students celebrating" },
+              { src: "https://images.unsplash.com/photo-1529390079861-591de354faf5?w=300", alt: "Students with books" },
+            ].map((photo, i) => (
+              <div key={i} className="w-56 h-36 rounded-xl overflow-hidden shadow-lg border-2 border-white/20 flex-shrink-0">
+                <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover" />
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-white/80 text-sm font-medium mt-6">
+            Join thousands of students across Ghana who are acing their exams with HaleelAI
+          </p>
+        </div>
+      </section>
+
+      {/* Wave divider */}
+      <div className="relative">
+        <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+          <path d="M0 0V40C360 10 720 60 1080 30C1260 15 1380 25 1440 20V0H0Z" fill="white" />
+        </svg>
+      </div>
 
       {/* How It Works */}
       <section className="py-24 px-4 bg-gradient-to-b from-gray-50 to-white">
@@ -402,8 +509,37 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Students Celebrating Section */}
+      <section className="py-16 px-4 bg-gradient-to-b from-white to-gray-50">
+        <div className="max-w-5xl mx-auto">
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+            <img
+              src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800"
+              alt="Happy students celebrating their exam results"
+              className="w-full h-[300px] md:h-[400px] object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/30 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+              <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-2">
+                Your Success Story Starts Here
+              </h3>
+              <p className="text-blue-100/90 text-base md:text-lg max-w-lg">
+                Every year, HaleelAI students celebrate outstanding results in their BECE and WASSCE exams. You could be next.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Wave divider */}
+      <div className="relative">
+        <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+          <path d="M0 60V20C480 50 960 0 1440 30V60H0Z" fill="#f9fafb" />
+        </svg>
+      </div>
+
       {/* Testimonials / Social Proof */}
-      <section className="py-24 px-4 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-24 px-4 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <span className="inline-block text-sm font-semibold text-purple-600 bg-purple-50 px-4 py-1.5 rounded-full mb-4">
@@ -419,25 +555,28 @@ export default function HomePage() {
               {
                 name: "Kwame A.",
                 level: "SHS 3",
-                text: "haleel.org helped me identify my weak topics in Core Maths. I went from scoring 40% to 78% in just 2 months of practice!",
+                text: "HaleelAI helped me identify my weak topics in Core Maths. I went from scoring 40% to 78% in just 2 months of practice!",
                 color: "border-blue-200",
+                avatar: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200",
               },
               {
                 name: "Abena M.",
                 level: "JHS 3",
                 text: "The mock BECE exams feel exactly like the real thing. The instant explanations helped me understand topics I used to struggle with.",
                 color: "border-emerald-200",
+                avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200",
               },
               {
                 name: "Yaw K.",
                 level: "SHS 2",
                 text: "The AI practice is incredible. It generates questions on exactly the topics I need to improve. Best study tool I have ever used.",
                 color: "border-amber-200",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200",
               },
             ].map((t) => (
               <div
                 key={t.name}
-                className={`bg-white rounded-2xl p-7 border-2 ${t.color} shadow-sm`}
+                className={`bg-white rounded-2xl p-7 border-2 ${t.color} shadow-sm hover:shadow-md transition-shadow`}
               >
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
@@ -450,9 +589,11 @@ export default function HomePage() {
                   &ldquo;{t.text}&rdquo;
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-emerald-500 flex items-center justify-center text-white font-bold text-sm">
-                    {t.name[0]}
-                  </div>
+                  <img
+                    src={t.avatar}
+                    alt={t.name}
+                    className="w-11 h-11 rounded-full object-cover border-2 border-gray-100 shadow-sm"
+                  />
                   <div>
                     <p className="font-semibold text-gray-900 text-sm">{t.name}</p>
                     <p className="text-gray-500 text-xs">{t.level}</p>
@@ -467,17 +608,30 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-24 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-700 via-blue-800 to-emerald-800 p-10 md:p-16 text-center shadow-2xl">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-700 via-blue-800 to-emerald-800 shadow-2xl">
+            {/* Background image overlay */}
+            <div className="absolute inset-0">
+              <img
+                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800"
+                alt="Students graduating"
+                className="w-full h-full object-cover opacity-15"
+              />
+            </div>
+
             {/* Decorative circles */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/4" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/4" />
 
-            <div className="relative z-10">
+            <div className="relative z-10 p-10 md:p-16 text-center">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium px-4 py-2 rounded-full mb-6">
+                <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                Free to get started
+              </div>
               <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">
                 Ready to Start Practicing?
               </h2>
               <p className="text-blue-100/80 text-lg mb-8 max-w-lg mx-auto">
-                Join thousands of Ghanaian students preparing for their exams with haleel.org. It&apos;s free to get started.
+                Join thousands of Ghanaian students preparing for their exams with HaleelAI. Your success journey begins now.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
@@ -504,15 +658,13 @@ export default function HomePage() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div className="md:col-span-2">
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-emerald-500 flex items-center justify-center text-white font-bold text-sm">
-                  H
-                </div>
+                <img src="/logo.svg" alt="HaleelAI" className="h-8" />
                 <span className="text-lg font-bold text-white">
-                  haleel<span className="text-emerald-400">.org</span>
+                  Haleel<span className="text-emerald-400">AI</span>
                 </span>
               </div>
               <p className="text-sm leading-relaxed max-w-sm">
-                The #1 online platform for Ghanaian students to practice BECE & WASSCE
+                The #1 AI-powered platform for Ghanaian students to practice BECE & WASSCE
                 past questions, take mock exams, and track academic performance.
               </p>
             </div>
@@ -548,8 +700,8 @@ export default function HomePage() {
             </div>
           </div>
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm">&copy; {new Date().getFullYear()} haleel.org. All rights reserved.</p>
-            <p className="text-xs text-gray-500">Made with care for Ghanaian students</p>
+            <p className="text-sm">&copy; 2026 HaleelAI. All rights reserved.</p>
+            <p className="text-xs text-gray-500">Made with care for Ghanaian students &mdash; haleelai.com</p>
           </div>
         </div>
       </footer>

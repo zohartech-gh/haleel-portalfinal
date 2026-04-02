@@ -46,19 +46,23 @@ function SignupForm() {
 
   return (
     <div className="min-h-screen flex">
-      {/* Left: Decorative */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-emerald-700 via-emerald-800 to-blue-900 relative overflow-hidden items-center justify-center p-12">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/4" />
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/4" />
-        <div className="relative z-10 text-center max-w-md">
-          <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-6 shadow-xl">
-            <span className="text-3xl font-extrabold text-white">H</span>
+      {/* Left: Photo Panel */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden items-end justify-center p-12">
+        <img
+          src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800"
+          alt="African students in classroom"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/90 via-emerald-900/50 to-emerald-900/30" />
+        <div className="relative z-10 text-center max-w-md mb-8">
+          <div className="flex items-center justify-center mb-6">
+            <img src="/logo.svg" alt="HaleelAI" className="h-10" />
           </div>
-          <h2 className="text-3xl font-extrabold text-white mb-4">Join haleel.org today</h2>
-          <p className="text-emerald-100/70 leading-relaxed">
+          <h2 className="text-3xl font-extrabold text-white mb-4">Join HaleelAI today</h2>
+          <p className="text-emerald-100/80 leading-relaxed">
             Start practicing BECE & WASSCE past questions with AI-powered tools. Completely free.
           </p>
-          <div className="grid grid-cols-2 gap-3 mt-8 max-w-xs mx-auto">
+          <div className="grid grid-cols-2 gap-3 mt-6 max-w-xs mx-auto">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
               <div className="text-2xl font-extrabold text-white">10K+</div>
               <div className="text-xs text-white/60 mt-1">Questions</div>
@@ -68,6 +72,12 @@ function SignupForm() {
               <div className="text-xs text-white/60 mt-1">Powered</div>
             </div>
           </div>
+          <div className="mt-8 bg-white/10 backdrop-blur-sm rounded-2xl p-5 text-left">
+            <p className="text-white/90 text-sm italic leading-relaxed">
+              &ldquo;I went from struggling with Science to topping my class. HaleelAI made studying feel like a game, and the results speak for themselves.&rdquo;
+            </p>
+            <p className="text-white/60 text-xs mt-3 font-medium">— Kwame O., JHS Student</p>
+          </div>
         </div>
       </div>
 
@@ -76,11 +86,9 @@ function SignupForm() {
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <Link href="/" className="inline-flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-emerald-500 flex items-center justify-center text-white font-bold shadow-lg">
-                H
-              </div>
+              <img src="/logo.svg" alt="HaleelAI" className="h-10" />
               <span className="text-xl font-bold text-gray-900">
-                haleel<span className="text-emerald-600">.org</span>
+                HaleelAI
               </span>
             </Link>
             <h1 className="text-2xl font-extrabold text-gray-900">Create your account</h1>
@@ -183,6 +191,10 @@ function SignupForm() {
             <Link href="/login" className="text-blue-600 hover:text-blue-700 font-semibold">
               Log in
             </Link>
+          </p>
+
+          <p className="text-center text-xs text-gray-300 mt-4">
+            haleelai.com
           </p>
         </div>
       </div>

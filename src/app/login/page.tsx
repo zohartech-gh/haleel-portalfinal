@@ -37,23 +37,32 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex">
-      {/* Left: Decorative */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-700 via-blue-800 to-emerald-800 relative overflow-hidden items-center justify-center p-12">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/4" />
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/4" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-400/5 rounded-full blur-3xl" />
-        <div className="relative z-10 text-center max-w-md">
-          <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-6 shadow-xl">
-            <span className="text-3xl font-extrabold text-white">H</span>
+      {/* Left: Photo Panel */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden items-end justify-center p-12">
+        <img
+          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800"
+          alt="Students studying together"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-900/50 to-blue-900/30" />
+        <div className="relative z-10 text-center max-w-md mb-8">
+          <div className="flex items-center justify-center mb-6">
+            <img src="/logo.svg" alt="HaleelAI" className="h-10" />
           </div>
-          <h2 className="text-3xl font-extrabold text-white mb-4">Welcome back to haleel.org</h2>
-          <p className="text-blue-100/70 leading-relaxed">
+          <h2 className="text-3xl font-extrabold text-white mb-4">Welcome back to HaleelAI</h2>
+          <p className="text-blue-100/80 leading-relaxed">
             Continue your BECE & WASSCE preparation. Practice past questions, take mock exams, and track your progress.
           </p>
-          <div className="flex gap-3 justify-center mt-8">
+          <div className="flex gap-3 justify-center mt-6">
             <div className="px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white/80 text-sm font-medium">BECE</div>
             <div className="px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white/80 text-sm font-medium">WASSCE</div>
             <div className="px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white/80 text-sm font-medium">AI Practice</div>
+          </div>
+          <div className="mt-8 bg-white/10 backdrop-blur-sm rounded-2xl p-5 text-left">
+            <p className="text-white/90 text-sm italic leading-relaxed">
+              &ldquo;HaleelAI helped me score an A1 in my WASSCE exams. The AI-powered practice questions were exactly what I needed to prepare.&rdquo;
+            </p>
+            <p className="text-white/60 text-xs mt-3 font-medium">— Amina K., SHS Graduate</p>
           </div>
         </div>
       </div>
@@ -63,11 +72,9 @@ export default function LoginPage() {
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <Link href="/" className="inline-flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-emerald-500 flex items-center justify-center text-white font-bold shadow-lg">
-                H
-              </div>
+              <img src="/logo.svg" alt="HaleelAI" className="h-10" />
               <span className="text-xl font-bold text-gray-900">
-                haleel<span className="text-emerald-600">.org</span>
+                HaleelAI
               </span>
             </Link>
             <h1 className="text-2xl font-extrabold text-gray-900">Welcome back</h1>
@@ -127,6 +134,10 @@ export default function LoginPage() {
             <Link href="/signup" className="text-blue-600 hover:text-blue-700 font-semibold">
               Sign up free
             </Link>
+          </p>
+
+          <p className="text-center text-xs text-gray-300 mt-4">
+            haleelai.com
           </p>
         </div>
       </div>

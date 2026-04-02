@@ -139,7 +139,7 @@ export default function AdminQuestionsPage() {
       <div className="bg-white border-b px-4 py-3">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div>
-            <span className="font-bold text-lg text-blue-700">haleel<span className="text-emerald-600">.org</span></span>
+            <span className="font-bold text-lg text-blue-700">Haleel<span className="text-emerald-600">AI</span></span>
             <span className="ml-2 text-xs bg-gray-800 text-white px-2 py-0.5 rounded">Admin</span>
           </div>
           <button onClick={handleLogout} className="text-sm text-red-500 hover:text-red-600 font-medium">Log out</button>
