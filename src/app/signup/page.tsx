@@ -49,7 +49,7 @@ function SignupForm() {
       {/* Left: Photo Panel */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden items-end justify-center p-12">
         <img
-          src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800"
+          src="/exam-success.png"
           alt="African students in classroom"
           className="absolute inset-0 w-full h-full object-cover"
         />

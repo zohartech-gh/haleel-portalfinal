@@ -158,10 +158,11 @@ export default function HomePage() {
             {/* Social proof avatars */}
             <div className="animate-slide-up-delay-4 flex items-center gap-3">
               <div className="flex -space-x-3">
-                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=80" alt="Student" className="w-9 h-9 rounded-full border-2 border-white/30 object-cover" />
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80" alt="Student" className="w-9 h-9 rounded-full border-2 border-white/30 object-cover" />
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80" alt="Student" className="w-9 h-9 rounded-full border-2 border-white/30 object-cover" />
-                <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=80" alt="Student" className="w-9 h-9 rounded-full border-2 border-white/30 object-cover" />
+                {["KA", "AM", "YK", "FA"].map((initials, i) => (
+                  <div key={i} className={`w-9 h-9 rounded-full border-2 border-white/30 flex items-center justify-center text-xs font-bold text-white ${["bg-blue-500", "bg-emerald-500", "bg-amber-500", "bg-purple-500"][i]}`}>
+                    {initials}
+                  </div>
+                ))}
               </div>
               <div>
                 <div className="flex items-center gap-1">
@@ -182,16 +183,16 @@ export default function HomePage() {
               {/* Main hero image */}
               <div className="absolute top-4 right-0 w-[85%] h-[320px] rounded-2xl overflow-hidden shadow-2xl shadow-blue-900/40 animate-slide-up-delay-1">
                 <img
-                  src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800"
-                  alt="African students studying together"
+                  src="/exam-hall.png"
+                  alt="Ghanaian students writing exams in hall"
                   className="w-full h-full object-cover"
                 />
               </div>
               {/* Floating smaller image */}
               <div className="absolute bottom-8 left-0 w-[55%] h-[200px] rounded-2xl overflow-hidden shadow-2xl shadow-emerald-900/30 border-4 border-white/20 animate-slide-up-delay-2">
                 <img
-                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600"
-                  alt="Students in classroom"
+                  src="/exam-success.png"
+                  alt="Ghanaian SHS students in exam hall"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -273,8 +274,8 @@ export default function HomePage() {
             <div className="hidden lg:block lg:col-span-2 relative">
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
-                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600"
-                  alt="Students in classroom"
+                  src="/exam-hall.png"
+                  alt="Ghanaian students writing exams"
                   className="w-full h-[400px] object-cover"
                 />
               </div>
@@ -377,10 +378,10 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex items-center gap-6 justify-center flex-wrap md:flex-nowrap">
             {[
-              { src: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=300", alt: "Students studying" },
-              { src: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=300", alt: "Classroom learning" },
-              { src: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=300", alt: "Students celebrating" },
-              { src: "https://images.unsplash.com/photo-1529390079861-591de354faf5?w=300", alt: "Students with books" },
+              { src: "/exam-hall.png", alt: "Ghanaian students writing BECE exams" },
+              { src: "/exam-success.png", alt: "SHS students in exam hall" },
+              { src: "/exam-hall.png", alt: "Students focused on exams" },
+              { src: "/exam-success.png", alt: "Exam success celebration" },
             ].map((photo, i) => (
               <div key={i} className="w-56 h-36 rounded-xl overflow-hidden shadow-lg border-2 border-white/20 flex-shrink-0">
                 <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover" />
@@ -514,8 +515,8 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto">
           <div className="relative rounded-3xl overflow-hidden shadow-2xl">
             <img
-              src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800"
-              alt="Happy students celebrating their exam results"
+              src="/exam-success.png"
+              alt="Ghanaian SHS students - Success in your examination"
               className="w-full h-[300px] md:h-[400px] object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/30 to-transparent" />
@@ -557,21 +558,21 @@ export default function HomePage() {
                 level: "SHS 3",
                 text: "HaleelAI helped me identify my weak topics in Core Maths. I went from scoring 40% to 78% in just 2 months of practice!",
                 color: "border-blue-200",
-                avatar: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200",
+                avatar: "",
               },
               {
                 name: "Abena M.",
                 level: "JHS 3",
                 text: "The mock BECE exams feel exactly like the real thing. The instant explanations helped me understand topics I used to struggle with.",
                 color: "border-emerald-200",
-                avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200",
+                avatar: "",
               },
               {
                 name: "Yaw K.",
                 level: "SHS 2",
                 text: "The AI practice is incredible. It generates questions on exactly the topics I need to improve. Best study tool I have ever used.",
                 color: "border-amber-200",
-                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200",
+                avatar: "",
               },
             ].map((t) => (
               <div
@@ -589,11 +590,9 @@ export default function HomePage() {
                   &ldquo;{t.text}&rdquo;
                 </p>
                 <div className="flex items-center gap-3">
-                  <img
-                    src={t.avatar}
-                    alt={t.name}
-                    className="w-11 h-11 rounded-full object-cover border-2 border-gray-100 shadow-sm"
-                  />
+                  <div className={`w-11 h-11 rounded-full flex items-center justify-center text-sm font-bold text-white shadow-sm ${t.color.replace("border-", "bg-").replace("-200", "-500")}`}>
+                    {t.name.split(" ").map(n => n[0]).join("")}
+                  </div>
                   <div>
                     <p className="font-semibold text-gray-900 text-sm">{t.name}</p>
                     <p className="text-gray-500 text-xs">{t.level}</p>
@@ -612,8 +611,8 @@ export default function HomePage() {
             {/* Background image overlay */}
             <div className="absolute inset-0">
               <img
-                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800"
-                alt="Students graduating"
+                src="/exam-success.png"
+                alt="Ghanaian students exam success"
                 className="w-full h-full object-cover opacity-15"
               />
             </div>

@@ -40,7 +40,7 @@ export default function LoginPage() {
       {/* Left: Photo Panel */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden items-end justify-center p-12">
         <img
-          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800"
+          src="/exam-hall.png"
           alt="Students studying together"
           className="absolute inset-0 w-full h-full object-cover"
         />
